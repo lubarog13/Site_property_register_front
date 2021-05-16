@@ -3,7 +3,9 @@
     v-slot:default="{ hover }">
 <v-card
    :elevation="hover? 15: 4"
-   class = "px-2 py-5" :style = "{'background': 'linear-gradient(180deg, rgb(255, 255, 255) 88%, rgb(255, 0, 0) 48%)'}"
+   @click="$router.push('/classroom/' + classItem.id)
+  $router.go()"
+   class = "px-2 py-5" :style = "{'background': 'linear-gradient(180deg, rgb(255, 255, 255) 88%, rgb(0, 255, 0) 48%)'}"
 >
 <v-row>
     <v-col class="mx-auto">

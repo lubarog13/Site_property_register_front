@@ -7,6 +7,7 @@ import Greeting from '../views/Greeting.vue'
 import Classroom from '../views/Classroom.vue'
 import Employee from '../views/Employee.vue'
 import SubdivisionInfo from '../views/SubdivisionInfo.vue'
+import ClassroomInfo from '../views/ClassroomInfo.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -49,6 +50,12 @@ const routes = [
     path: '/subdivision/:id',
     name: 'SubdivisionInfo',
     component: SubdivisionInfo,
+    props: true
+  },
+  {
+    path: '/classroom/:id',
+    name: 'ClassroomInfo',
+    component: ClassroomInfo,
     props: true
   }
 ]
