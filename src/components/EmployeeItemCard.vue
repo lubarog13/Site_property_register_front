@@ -4,6 +4,8 @@
 <v-card
    :elevation="hover? 15: 4"
    class = "px-2 py-5" :style = "{'background': 'linear-gradient(180deg, rgb(255, 255, 255) 90%, rgb(0, 71, 177) 24%)'}"
+   @click="$router.push('/employee/' + employeeItem.id)
+  $router.go()"
 >
 <v-row>
     <v-col class="mx-auto"

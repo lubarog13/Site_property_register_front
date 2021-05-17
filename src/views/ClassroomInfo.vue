@@ -15,7 +15,10 @@
       <ul
       v-for="unitOfProperty in unitOfPropertys"
       :key="unitOfProperty.id">
-      <li>Inventory number: {{ unitOfProperty.inventory_number }} cost: {{ unitOfProperty.cost }}rub.</li>
+      <li
+      @click="$router.push('/property/' + unitOfProperty.id)
+  $router.go()"
+      >Inventory number: {{ unitOfProperty.inventory_number }} cost: {{ unitOfProperty.cost }}rub.</li>
       </ul>
       </div>
       </v-col>

@@ -17,7 +17,11 @@
       <ul
       v-for="employee in employees"
       :key="employee.id">
-      <li>{{ employee.first_name }} {{ employee.last_name }}</li>
+      <li
+      :style="{'text-decoration': 'underline'}"
+      @click="$router.push('/employee/' + employee.id)
+      $router.go()"
+      >{{ employee.first_name }} {{ employee.last_name }}</li>
       </ul>
       </div>
       </v-col>
