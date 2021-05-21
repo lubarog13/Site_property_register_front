@@ -1,6 +1,14 @@
 <template>
 <section>
-  <h1>Classrooms</h1>
+  <h1>Classrooms
+    <v-btn
+        color="warning"
+        :style="{'margin':'20px'}"
+        @click="$router.push('/classroom_create/')
+            $router.go()">
+            Create
+        </v-btn>
+  </h1>
   <v-row>
     <v-col cols="4" class="mx-auto">
       <ClassItemCard

@@ -3,11 +3,64 @@
   <h1>{{ subdivision.subdivision_name }}</h1>
   <v-card
   elevation="10"
-  class = "mx-auto"
+  v-scroll.self="onScroll"
+  class = "mx-auto overflow-y-auto overflow-x-hidden"
   max-width="70%"
+  max-height="450px"
   >
   <v-row>
       <v-col cols="5" class="mx-auto">
+      <v-dialog
+      v-model="dialog"
+      persistent
+      max-width="290"
+    >
+      <template
+      v-slot:activator="{ on, attrs }">
+        <v-btn
+          color="error"
+          dark
+          :style="{'margin':'20px'}"
+          v-bind="attrs"
+          v-on="on"
+        >
+          Delete
+        </v-btn>
+        <v-btn
+        color="primary"
+        :style="{'margin':'20px'}"
+        @click="$router.push('/subdivision_update/'+subdivision.id)
+            $router.go()">
+            Update
+        </v-btn>
+      </template>
+      <v-card>
+        <v-card-title class="headline">
+          Do you want to delete {{ subdivision.subdivision_name }}?
+        </v-card-title>
+        <v-card-text>You cant't cancel this action</v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="green darken-1"
+            text
+            @click="deleteSubdivision('http://localhost:8000/subdivisions/delete/'+$route.params.id+'/')
+            $router.push('/subdivisions')
+            $router.go()
+            dialog = false"
+          >
+            Yes
+          </v-btn>
+          <v-btn
+            color="green darken-1"
+            text
+            @click="dialog = false"
+          >
+            No
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
       <p>{{ subdivision.phone_number }}</p>
       <p>{{ subdivision.subdivision_type }}</p>
       <p v-if="subdivision.id_subdivision!=null"
@@ -68,6 +121,7 @@ export default {
     classItems: [],
     subdivisionItems: [],
     employees: [],
+    dialog: false,
     computed: {
       id () {
         console.log('id1', this.$route.params.id)
@@ -95,6 +149,16 @@ export default {
         })
         .catch(err => {
           console.log('error displaying subdivisionItems', err)
+        })
+    },
+    async deleteSubdivision (URl) {
+      await this.axios.delete(URl
+      )
+        .then(function (response) {
+          console.log(response)
+        })
+        .catch(function (error) {
+          console.log(error)
         })
     }
   },

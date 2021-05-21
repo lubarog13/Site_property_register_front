@@ -10,6 +10,11 @@ import SubdivisionInfo from '../views/SubdivisionInfo.vue'
 import ClassroomInfo from '../views/ClassroomInfo.vue'
 import EmployeeInfo from '../views/EmployeeInfo.vue'
 import PropertyInfo from '../views/PropertyInfo.vue'
+import SubdivisionCreate from '../views/SubdivisionCreate.vue'
+import SubdivisionUpdate from '../views/SubdivisionUpdate.vue'
+import SubdivisionDelete from '../views/SubdivisionDelete.vue'
+import ClassroomCreate from '../views/ClassroomCreate.vue'
+import ClassroomUpdate from '../views/ClassroomUpdate.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -70,6 +75,36 @@ const routes = [
     path: '/property/:id',
     name: 'PropertyInfo',
     component: PropertyInfo,
+    props: true
+  },
+  {
+    path: '/subdivision_create/',
+    name: 'SubdivisionCreate',
+    component: SubdivisionCreate,
+    props: false
+  },
+  {
+    path: '/subdivision_update/:id',
+    name: 'SubdivisionUpdate',
+    component: SubdivisionUpdate,
+    props: true
+  },
+  {
+    path: '/delete/:id',
+    name: 'SubdivisionDelete',
+    component: SubdivisionDelete,
+    props: true
+  },
+  {
+    path: '/classroom_create/',
+    name: 'ClassroomCreate',
+    component: ClassroomCreate,
+    props: false
+  },
+  {
+    path: '/classroom_update/:id',
+    name: 'ClassroomUpdate',
+    component: ClassroomUpdate,
     props: true
   }
 ]

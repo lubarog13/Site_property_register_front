@@ -1,6 +1,14 @@
 <template>
 <section>
-  <h1>Subdivisions</h1>
+  <h1>Subdivisions
+    <v-btn
+        color="warning"
+        :style="{'margin':'20px'}"
+        @click="$router.push('/subdivision_create/')
+            $router.go()">
+            Create
+        </v-btn>
+  </h1>
   <v-row>
     <v-col cols="4" class="mx-auto">
       <SubdivisionItemCard

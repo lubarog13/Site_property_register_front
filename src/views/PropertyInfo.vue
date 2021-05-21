@@ -3,8 +3,10 @@
 <h1>Inventory number {{ unitOfProperty.inventory_number }}</h1>
   <v-card
   elevation="10"
-  class = "mx-auto"
+  v-scroll.self="onScroll"
+  class = "mx-auto overflow-y-auto overflow-x-hidden"
   max-width="70%"
+  max-height="450px"
   >
   <v-row>
       <v-col cols="6" class="mx-auto">
