@@ -10,6 +10,57 @@
   >
   <v-row>
       <v-col cols="6" class="mx-auto">
+        <v-dialog
+      v-model="dialog"
+      persistent
+      max-width="290"
+    >
+      <template
+      v-slot:activator="{ on, attrs }">
+        <v-btn
+          color="error"
+          dark
+          :style="{'margin':'20px'}"
+          v-bind="attrs"
+          v-on="on"
+        >
+          Delete
+        </v-btn>
+        <v-btn
+        color="primary"
+        :style="{'margin':'20px'}"
+        @click="$router.push('/employee_update/'+employee.id)
+            $router.go()">
+            Update
+        </v-btn>
+      </template>
+      <v-card>
+        <v-card-title class="headline">
+          Do you want to delete {{ employee.last_name }} {{ employee.first_name }}?
+        </v-card-title>
+        <v-card-text>You cant't cancel this action</v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="green darken-1"
+            text
+            @click="deleteEmployee('http://localhost:8000/employee/delete/'+$route.params.id+'/')
+            $router.push('/employees')
+            $router.go()
+            dialog = false"
+          >
+            Yes
+          </v-btn>
+          <v-btn
+            color="green darken-1"
+            text
+            @click="dialog = false"
+          >
+            No
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
         <v-card-text>email: {{ employee.email }}</v-card-text>
       <p> {{ employee.position }}</p>
       <p>In ITMO command since {{ employee.start_year }}</p>
@@ -55,6 +106,7 @@ export default {
     employee: Object,
     subdivisionItem: Object,
     unitOfPropertys: [],
+    dialog: false,
     computed: {
       id () {
         console.log('id1', this.$route.params.id)
@@ -72,6 +124,16 @@ export default {
         })
         .catch(err => {
           console.log('error displaying subdivisionItems', err)
+        })
+    },
+    async deleteEmployee (URl) {
+      await this.axios.delete(URl
+      )
+        .then(function (response) {
+          console.log(response)
+        })
+        .catch(function (error) {
+          console.log(error)
         })
     }
   },

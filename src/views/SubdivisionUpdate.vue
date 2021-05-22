@@ -1,6 +1,6 @@
 <template>
 <section>
-  <h1>Create subdivision</h1>
+  <h1>Update subdivision</h1>
 <v-card
   elevation="10"
   class = "mx-auto"

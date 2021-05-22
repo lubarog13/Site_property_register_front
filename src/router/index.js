@@ -14,6 +14,8 @@ import SubdivisionCreate from '../views/SubdivisionCreate.vue'
 import SubdivisionUpdate from '../views/SubdivisionUpdate.vue'
 import SubdivisionDelete from '../views/SubdivisionDelete.vue'
 import ClassroomCreate from '../views/ClassroomCreate.vue'
+import EmployeeCreate from '../views/EmployeeCreate.vue'
+import EmployeeUpdate from '../views/EmployeeUpdate.vue'
 import ClassroomUpdate from '../views/ClassroomUpdate.vue'
 Vue.use(VueRouter)
 
@@ -105,6 +107,18 @@ const routes = [
     path: '/classroom_update/:id',
     name: 'ClassroomUpdate',
     component: ClassroomUpdate,
+    props: true
+  },
+  {
+    path: '/employee_create/',
+    name: 'EmployeeCreate',
+    component: EmployeeCreate,
+    props: false
+  },
+  {
+    path: '/employee_update/:id',
+    name: 'EmployeeUpdate',
+    component: EmployeeUpdate,
     props: true
   }
 ]

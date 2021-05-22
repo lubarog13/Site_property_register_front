@@ -1,6 +1,14 @@
 <template>
 <section>
-  <h1>Employees</h1>
+  <h1>Employees
+    <v-btn
+        color="warning"
+        :style="{'margin':'20px'}"
+        @click="$router.push('/employee_create/')
+            $router.go()">
+            Create
+        </v-btn>
+  </h1>
   <v-row>
     <v-col cols="6" class="mx-auto">
       <EmployeeItemCard
