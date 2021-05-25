@@ -71,10 +71,9 @@
       v-for="unitOfProperty in unitOfPropertys"
       :key="unitOfProperty.id">
       <li
-      @click="$router.push('/property/' + unitOfProperty.unit_of_property.id)
-  $router.go()"
-      ><b>Inventory number:</b> {{ unitOfProperty.unit_of_property.inventory_number }}  cost: {{ unitOfProperty.unit_of_property.cost }}rub.
-           aud.{{ unitOfProperty.classroom.number }} {{ unitOfProperty.date_of_creation }}
+      ><div @click="$router.push('/property/' + unitOfProperty.unit_of_property.id)
+  $router.go()"><b>Inventory number:</b> {{ unitOfProperty.unit_of_property.inventory_number }}  cost: {{ unitOfProperty.unit_of_property.cost }}rub.</div>
+           <a @click="$router.push('/classroom/' + unitOfProperty.classroom.id)">aud.{{ unitOfProperty.classroom.number }} </a>{{ unitOfProperty.date_of_creation }}
       </li>
       </ol>
       </div>

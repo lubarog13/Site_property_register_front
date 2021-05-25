@@ -16,7 +16,13 @@ import SubdivisionDelete from '../views/SubdivisionDelete.vue'
 import ClassroomCreate from '../views/ClassroomCreate.vue'
 import EmployeeCreate from '../views/EmployeeCreate.vue'
 import EmployeeUpdate from '../views/EmployeeUpdate.vue'
+import PropertyCreate from '../views/PropertyCreate.vue'
+import PropertyUpdate from '../views/PropertyUpdate.vue'
 import ClassroomUpdate from '../views/ClassroomUpdate.vue'
+import PropertyListUpdate from '../views/PropertyListUpdate.vue'
+import PropertyListCreate from '../views/PropertyListCreate.vue'
+import PropertyLiabilityUpdate from '../views/PropertyLiabilityUpdate.vue'
+import PropertyLiabilityCreate from '../views/PropertyLiabilityCreate.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -119,6 +125,41 @@ const routes = [
     path: '/employee_update/:id',
     name: 'EmployeeUpdate',
     component: EmployeeUpdate,
+    props: true
+  },
+  {
+    path: '/property_liab_create/',
+    name: 'PropertyLiabilityCreate',
+    component: PropertyLiabilityCreate,
+    props: true
+  },
+  {
+    path: '/property_liab_update/:id',
+    name: 'PropertyLiabilityUpdate',
+    component: PropertyLiabilityUpdate,
+    props: true
+  },
+  {
+    path: '/property_list_create/',
+    name: 'PropertyListCreate',
+    component: PropertyListCreate,
+    props: false
+  },
+  {
+    path: '/property_list_update/:id',
+    name: 'PropertyListUpdate',
+    component: PropertyListUpdate,
+    props: true
+  },
+  {
+    path: '/property_create/',
+    name: 'PropertyCreate',
+    component: PropertyCreate
+  },
+  {
+    path: '/property_update/:id',
+    name: 'Property]Update',
+    component: PropertyUpdate,
     props: true
   }
 ]

@@ -23,6 +23,18 @@
   $router.go()">
        Classrooms
      </div>
+     <v-text-field
+     :style="{'padding':'30px'}"
+      v-model="search"
+      label="Search"
+      required></v-text-field>
+     <v-btn
+      color="#000080"
+      class="mr-4"
+      :style="{'padding':'20px'}"
+    >
+      Search
+    </v-btn>
    </v-app-bar>
    <v-main class="d-flex align-center text-center" :style="{'background-image': 'url(' + require('./images/1.jpg') + ') ' , 'background-size' : '100%', 'background-color': '#00008B', 'background-attachment': 'fixed', 'overflow': 'hidden'}">
      <router-view />
@@ -33,7 +45,7 @@
 export default {
   name: 'App',
   data: () => ({
-    //
+    search: ''
   })
 }
 </script>
