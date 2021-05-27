@@ -32,6 +32,8 @@
       color="#000080"
       class="mr-4"
       :style="{'padding':'20px'}"
+      @click="$router.push('/search/'+ search)
+      $router.go()"
     >
       Search
     </v-btn>

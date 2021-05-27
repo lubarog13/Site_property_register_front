@@ -23,6 +23,7 @@ import PropertyListUpdate from '../views/PropertyListUpdate.vue'
 import PropertyListCreate from '../views/PropertyListCreate.vue'
 import PropertyLiabilityUpdate from '../views/PropertyLiabilityUpdate.vue'
 import PropertyLiabilityCreate from '../views/PropertyLiabilityCreate.vue'
+import Search from '../views/Search.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -158,9 +159,14 @@ const routes = [
   },
   {
     path: '/property_update/:id',
-    name: 'Property]Update',
+    name: 'PropertyUpdate',
     component: PropertyUpdate,
     props: true
+  },
+  {
+    path: '/search/:str',
+    name: 'Search',
+    component: Search
   }
 ]
 
