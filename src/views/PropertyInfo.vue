@@ -114,7 +114,7 @@ export default {
   }),
   methods: {
     async getPropertyItems (apiURl) {
-      await this.axios.get(apiURl)
+      await this.axios.get(apiURl, { headers: { Authorization: 'Token ' + this.$cookies.get('token').toString() } })
         .then(res => {
           this.unitOfProperty = res.data.Unit_of_property
           this.classroomItems = res.data.Classroom
@@ -124,7 +124,7 @@ export default {
         })
     },
     async deleteProperty (URl) {
-      await this.axios.delete(URl
+      await this.axios.delete(URl, { headers: { Authorization: 'Token ' + this.$cookies.get('token').toString() } }
       )
         .then(function (response) {
           console.log(response)
@@ -136,6 +136,9 @@ export default {
   },
   created () {
     // console.log('id', this.computed.id())
+    if (this.$cookies.get('token') === 'error') {
+      this.$router.push('/auth')
+    }
     var apiURl = 'http://localhost:8000/property/' + this.$route.params.id + '/?format=json'
     this.getPropertyItems(apiURl)
   }

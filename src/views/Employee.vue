@@ -12,9 +12,9 @@
   <v-row>
     <v-col cols="6" class="mx-auto">
       <EmployeeItemCard
-        v-for="employeeItem in employeeItems"
-        :key="employeeItem.id"
-        :employee-item="employeeItem"
+        v-for="employee in employees"
+        :key="employee.id"
+        :employee-item="employee"
         class="my-2"
       />
     </v-col>
@@ -30,9 +30,16 @@ export default {
   data: () => ({
     employeeItems: []
   }),
+  computed: {
+    employees: function () {
+      return this.employeeItems.filter(function (employeeItem) {
+        return employeeItem.position != null
+      })
+    }
+  },
   methods: {
     async getEmployeeItems () {
-      await this.axios.get(apiURl)
+      await this.axios.get(apiURl, { headers: { Authorization: 'Token ' + this.$cookies.get('token').toString() } })
         .then(res => {
           this.employeeItems = res.data.Employees
         })
@@ -42,6 +49,9 @@ export default {
     }
   },
   created () {
+    if (this.$cookies.get('token') === 'error') {
+      this.$router.push('/auth')
+    }
     this.getEmployeeItems()
   }
 }

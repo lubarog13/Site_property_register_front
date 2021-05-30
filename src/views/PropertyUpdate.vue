@@ -89,6 +89,11 @@ export default {
         revaluation_year: this.revaluation_year,
         cost: this.cost,
         lifetime: this.lifetime
+      },
+      {
+        headers: {
+          Authorization: 'Token ' + this.$cookies.get('token').toString()
+        }
       })
         .then(function (response) {
           console.log(response)
@@ -104,7 +109,7 @@ export default {
     },
     async getItems (id) {
       var url = 'http://localhost:8000/property/update/' + id + '/'
-      await this.axios.get(url)
+      await this.axios.get(url, { headers: { Authorization: 'Token ' + this.$cookies.get('token').toString() } })
         .then(res => {
           this.inventory_number = res.data.inventory_number
           this.lifetime = res.data.lifetime
@@ -118,6 +123,9 @@ export default {
     }
   },
   created () {
+    if (this.$cookies.get('token') === 'error') {
+      this.$router.push('/auth')
+    }
     this.getItems(this.$route.params.id)
   }
 }

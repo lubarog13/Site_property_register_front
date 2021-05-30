@@ -80,15 +80,16 @@ export default {
   }),
   methods: {
     async pushProperty (apiURl) {
-      console.log(this.employees)
-      console.log(this.classrooms)
-      console.log(this.start_date)
-      console.log(this.end_date)
       await this.axios.put(apiURl, {
         start_date: this.start_date,
         end_date: this.end_date,
         classroom: this.classrooms,
         employee: this.employees
+      },
+      {
+        headers: {
+          Authorization: 'Token ' + this.$cookies.get('token').toString()
+        }
       })
         .then(function (response) {
           console.log(response)
@@ -103,14 +104,14 @@ export default {
       this.getParams('http://localhost:8000/property_liab/' + id + '/')
     },
     async getItems () {
-      await this.axios.get(URl1)
+      await this.axios.get(URl1, { headers: { Authorization: 'Token ' + this.$cookies.get('token').toString() } })
         .then(res => {
           this.employeeItems = res.data.Employees
         })
         .catch(err => {
           console.log('error displaying employeeItems', err)
         })
-      await this.axios.get(URl2)
+      await this.axios.get(URl2, { headers: { Authorization: 'Token ' + this.$cookies.get('token').toString() } })
         .then(res => {
           this.classItems = res.data
         })
@@ -119,7 +120,7 @@ export default {
         })
     },
     async getParams (url) {
-      await this.axios.get(url)
+      await this.axios.get(url, { headers: { Authorization: 'Token ' + this.$cookies.get('token').toString() } })
         .then(res => {
           this.employees = res.data.employee.id
           this.classrooms = res.data.classroom.id
@@ -134,6 +135,9 @@ export default {
     }
   },
   created () {
+    if (this.$cookies.get('token') === 'error') {
+      this.$router.push('/auth')
+    }
     var url = 'http://localhost:8000/property_liab/' + this.$route.params.id + '/'
     this.getItems()
     this.getParams(url)

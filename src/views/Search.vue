@@ -61,7 +61,7 @@ export default {
   }),
   methods: {
     async getSearchItems (apiURl) {
-      await this.axios.get(apiURl)
+      await this.axios.get(apiURl, { headers: { Authorization: 'Token ' + this.$cookies.get('token').toString() } })
         .then(res => {
           this.employeeItems = res.data.Employee
           this.subdivisionItems = res.data.Subdivision
@@ -75,8 +75,12 @@ export default {
   },
   created () {
     // console.log('id', this.computed.id())
+    if (this.$cookies.get('token') === 'error') {
+      this.$router.push('/auth')
+    }
     var apiURl = 'http://localhost:8000/search/' + this.$route.params.str + '/?format=json'
     this.getSearchItems(apiURl)
+    this.$cookies.set('hello', 'hi')
   }
 }
 </script>

@@ -89,6 +89,11 @@ export default {
         revaluation_year: this.revaluation_year,
         cost: this.cost,
         lifetime: this.lifetime
+      },
+      {
+        headers: {
+          Authorization: 'Token ' + this.$cookies.get('token').toString()
+        }
       })
         .then(function (response) {
           console.log(response)
@@ -102,6 +107,9 @@ export default {
     }
   },
   created () {
+    if (this.$cookies.get('token') === 'error') {
+      this.$router.push('/auth')
+    }
   }
 }
 </script>

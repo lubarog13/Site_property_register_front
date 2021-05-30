@@ -84,6 +84,11 @@ export default {
         end_date: this.end_date,
         classroom: this.classrooms,
         employee: this.employees
+      },
+      {
+        headers: {
+          Authorization: 'Token ' + this.$cookies.get('token').toString()
+        }
       })
         .then(function (response) {
           console.log(response)
@@ -95,8 +100,8 @@ export default {
     reset () {
       this.$refs.form.reset()
     },
-    async getItems (id_) {
-      await this.axios.get(URl1)
+    async getItems () {
+      await this.axios.get(URl1, { headers: { Authorization: 'Token ' + this.$cookies.get('token').toString() } })
         .then(res => {
           this.employeeItems = res.data.Employees
           console.log('items', this.employeeItems)
@@ -105,7 +110,7 @@ export default {
         .catch(err => {
           console.log('error displaying employeeItems', err)
         })
-      await this.axios.get(URl2)
+      await this.axios.get(URl2, { headers: { Authorization: 'Token ' + this.$cookies.get('token').toString() } })
         .then(res => {
           this.classItems = res.data
         })
@@ -115,6 +120,9 @@ export default {
     }
   },
   created () {
+    if (this.$cookies.get('token') === 'error') {
+      this.$router.push('/auth')
+    }
     var id = this.$route.params.id
     this.getItems(id)
   }

@@ -95,6 +95,11 @@ export default {
         area: this.area,
         appointment: this.appointment,
         subdivision: this.id_subdivisions
+      },
+      {
+        headers: {
+          Authorization: 'Token ' + this.$cookies.get('token').toString()
+        }
       })
         .then(function (response) {
           console.log(response)
@@ -108,7 +113,7 @@ export default {
       this.$refs.form.reset()
     },
     async getSubdivisionItems () {
-      await this.axios.get(URl)
+      await this.axios.get(URl, { headers: { Authorization: 'Token ' + this.$cookies.get('token').toString() } })
         .then(res => {
           this.subdivisions = res.data.Subdivisions
           console.log(this.subdivisions)
@@ -119,6 +124,9 @@ export default {
     }
   },
   created () {
+    if (this.$cookies.get('token') === 'error') {
+      this.$router.push('/auth')
+    }
     this.getSubdivisionItems()
   }
 }

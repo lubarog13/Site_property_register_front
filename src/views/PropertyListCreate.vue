@@ -79,6 +79,11 @@ export default {
           date_of_creation: this.start_date,
           unit_of_property: this.unit_of_property[i],
           classroom: this.classrooms
+        },
+        {
+          headers: {
+            Authorization: 'Token ' + this.$cookies.get('token').toString()
+          }
         })
           .then(function (response) {
             console.log(response)
@@ -93,14 +98,14 @@ export default {
       this.$refs.form.reset()
     },
     async getItems () {
-      await this.axios.get(URl1)
+      await this.axios.get(URl1, { headers: { Authorization: 'Token ' + this.$cookies.get('token').toString() } })
         .then(res => {
           this.units = res.data.Unit_of_property
         })
         .catch(err => {
           console.log('error displaying units', err)
         })
-      await this.axios.get(URl2)
+      await this.axios.get(URl2, { headers: { Authorization: 'Token ' + this.$cookies.get('token').toString() } })
         .then(res => {
           this.classItems = res.data
         })
@@ -110,6 +115,9 @@ export default {
     }
   },
   created () {
+    if (this.$cookies.get('token') === 'error') {
+      this.$router.push('/auth')
+    }
     var id = this.$route.params.id
     this.getItems(id)
   }

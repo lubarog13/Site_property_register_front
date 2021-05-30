@@ -131,7 +131,7 @@ export default {
   }),
   methods: {
     async getSubdivisionItems (apiURl) {
-      await this.axios.get(apiURl)
+      await this.axios.get(apiURl, { headers: { Authorization: 'Token ' + this.$cookies.get('token').toString() } })
         .then(res => {
           this.subdivision = res.data
         })
@@ -140,7 +140,7 @@ export default {
         })
     },
     async getClassRoom (classAPIURL) {
-      await this.axios.get(classAPIURL)
+      await this.axios.get(classAPIURL, { headers: { Authorization: 'Token ' + this.$cookies.get('token').toString() } })
         .then(res => {
           this.classItems = res.data.Classrooms
           this.subdivisionItems = res.data.Subdivisions
@@ -152,7 +152,7 @@ export default {
         })
     },
     async deleteSubdivision (URl) {
-      await this.axios.delete(URl
+      await this.axios.delete(URl, { headers: { Authorization: 'Token ' + this.$cookies.get('token').toString() } }
       )
         .then(function (response) {
           console.log(response)
@@ -164,6 +164,9 @@ export default {
   },
   created () {
     // console.log('id', this.computed.id())
+    if (this.$cookies.get('token') === 'error') {
+      this.$router.push('/auth')
+    }
     var apiURl = 'http://localhost:8000/subdivision/' + this.$route.params.id + '/?format=json'
     var classAPIURL = 'http://localhost:8000/classrooms/' + this.$route.params.id + '/?format=json'
     this.getSubdivisionItems(apiURl)

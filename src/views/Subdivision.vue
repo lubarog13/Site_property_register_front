@@ -32,7 +32,7 @@ export default {
   }),
   methods: {
     async getSubdivisionItems () {
-      await this.axios.get(apiURl)
+      await this.axios.get(apiURl, { headers: { Authorization: 'Token ' + this.$cookies.get('token').toString() } })
         .then(res => {
           this.subdivisionItems = res.data.Subdivisions
         })
@@ -42,6 +42,9 @@ export default {
     }
   },
   created () {
+    if (this.$cookies.get('token') === 'error') {
+      this.$router.push('/auth')
+    }
     this.getSubdivisionItems()
   }
 }

@@ -68,7 +68,7 @@
     <v-text-field
       v-model="password"
       :rules="passwordRules"
-      :counter="4"
+      :counter="8"
       label="Password"
       required
     ></v-text-field>
@@ -146,7 +146,7 @@ export default {
     ],
     passwordRules: [
       v => !!v || 'Password is required',
-      v => (v && v.length >= 4 && v.length <= 40) || 'Password must be less than 40 characters and more then 4'
+      v => (v && v.length >= 8 && v.length <= 40) || 'Password must be less than 40 characters and more then 4'
     ],
     subdivisions: []
   }),
@@ -170,6 +170,11 @@ export default {
         subdivision: this.id_subdivisions,
         groups: [],
         user_permissions: []
+      },
+      {
+        headers: {
+          Authorization: 'Token ' + this.$cookies.get('token').toString()
+        }
       })
         .then(function (response) {
           console.log(response)
@@ -184,7 +189,7 @@ export default {
       this.$refs.form.reset()
     },
     async getSubdivisionItems () {
-      await this.axios.get(URl)
+      await this.axios.get(URl, { headers: { Authorization: 'Token ' + this.$cookies.get('token').toString() } })
         .then(res => {
           this.subdivisions = res.data.Subdivisions
           console.log(this.subdivisions)
@@ -195,6 +200,9 @@ export default {
     }
   },
   created () {
+    if (this.$cookies.get('token') === 'error') {
+      this.$router.push('/auth')
+    }
     this.getSubdivisionItems()
   }
 }

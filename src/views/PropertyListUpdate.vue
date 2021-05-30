@@ -78,6 +78,11 @@ export default {
         date_of_creation: this.start_date,
         unit_of_property: this.unit_of_property,
         classroom: this.classrooms
+      },
+      {
+        headers: {
+          Authorization: 'Token ' + this.$cookies.get('token').toString()
+        }
       })
         .then(function (response) {
           console.log(response)
@@ -91,7 +96,7 @@ export default {
       this.getInfo('http://localhost:8000/property_list/' + id + '/')
     },
     async getItems () {
-      await this.axios.get(URl1)
+      await this.axios.get(URl1, { headers: { Authorization: 'Token ' + this.$cookies.get('token').toString() } })
         .then(res => {
           this.units = res.data.Unit_of_property
         })
@@ -107,7 +112,7 @@ export default {
         })
     },
     async getInfo (url) {
-      await this.axios.get(url)
+      await this.axios.get(url, { headers: { Authorization: 'Token ' + this.$cookies.get('token').toString() } })
         .then(res => {
           this.classrooms = res.data.classroom.id
           this.start_date = res.data.date_of_creation
@@ -119,6 +124,9 @@ export default {
     }
   },
   created () {
+    if (this.$cookies.get('token') === 'error') {
+      this.$router.push('/auth')
+    }
     var id = this.$route.params.id
     this.getItems(id)
     this.getInfo('http://localhost:8000/property_list/' + this.$route.params.id + '/')

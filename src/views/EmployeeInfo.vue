@@ -115,7 +115,7 @@ export default {
   }),
   methods: {
     async getEmployeeItems (apiURl) {
-      await this.axios.get(apiURl)
+      await this.axios.get(apiURl, { headers: { Authorization: 'Token ' + this.$cookies.get('token').toString() } })
         .then(res => {
           this.employee = res.data.Employee
           this.subdivisionItem = res.data.Employee.subdivision
@@ -126,7 +126,7 @@ export default {
         })
     },
     async deleteEmployee (URl) {
-      await this.axios.delete(URl
+      await this.axios.delete(URl, { headers: { Authorization: 'Token ' + this.$cookies.get('token').toString() } }
       )
         .then(function (response) {
           console.log(response)
@@ -138,6 +138,9 @@ export default {
   },
   created () {
     // console.log('id', this.computed.id())
+    if (this.$cookies.get('token') === 'error') {
+      this.$router.push('/auth')
+    }
     var apiURl = 'http://localhost:8000/employee/' + this.$route.params.id + '/?format=json'
     this.getEmployeeItems(apiURl)
   }

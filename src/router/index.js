@@ -1,9 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 // import Home from '../views/Home.vue'
-import Subdivision from '../views/Subdivision.vue'
-import Nasa from '../views/Nasa.vue'
 import Greeting from '../views/Greeting.vue'
+import Subdivision from '../views/Subdivision.vue'
+import Login from '../views/Login.vue'
+import Nasa from '../views/Nasa.vue'
 import Classroom from '../views/Classroom.vue'
 import Employee from '../views/Employee.vue'
 import SubdivisionInfo from '../views/SubdivisionInfo.vue'
@@ -18,6 +19,7 @@ import EmployeeCreate from '../views/EmployeeCreate.vue'
 import EmployeeUpdate from '../views/EmployeeUpdate.vue'
 import PropertyCreate from '../views/PropertyCreate.vue'
 import PropertyUpdate from '../views/PropertyUpdate.vue'
+import Signup from '../views/SignUp.vue'
 import ClassroomUpdate from '../views/ClassroomUpdate.vue'
 import PropertyListUpdate from '../views/PropertyListUpdate.vue'
 import PropertyListCreate from '../views/PropertyListCreate.vue'
@@ -31,6 +33,16 @@ const routes = [
     path: '/',
     name: 'Greeting',
     component: Greeting
+  },
+  {
+    path: '/auth',
+    name: 'Login',
+    component: Login
+  },
+  {
+    path: '/registration',
+    name: 'Signup',
+    component: Signup
   },
   {
     path: '/about',

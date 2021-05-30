@@ -8,8 +8,7 @@
   $router.go()"
 >
 <v-row>
-    <v-col class="mx-auto"
-    v-if="employeeItem.position!=null">
+    <v-col class="mx-auto">
       <v-card-title class="justify-center">
         {{ employeeItem.first_name }} {{ employeeItem.last_name }} {{ employeeItem.second_name }}
       </v-card-title>

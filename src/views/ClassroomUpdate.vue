@@ -102,6 +102,11 @@ export default {
         subdivision: this.id_subdivisions,
         employee: this.employee,
         unit_of_property: this.unit_of_property
+      },
+      {
+        headers: {
+          Authorization: 'Token ' + this.$cookies.get('token').toString()
+        }
       })
         .then(function (response) {
           console.log(response)
@@ -111,7 +116,7 @@ export default {
         })
     },
     async getSubdivisionItems () {
-      await this.axios.get(URl)
+      await this.axios.get(URl, { headers: { Authorization: 'Token ' + this.$cookies.get('token').toString() } })
         .then(res => {
           this.subdivisions = res.data.Subdivisions
           console.log(this.subdivisions)
@@ -126,7 +131,7 @@ export default {
       this.getUpdateItems('http://localhost:8000/classroom/update/' + id + '/')
     },
     async getUpdateItems (URl_) {
-      await this.axios.get(URl_)
+      await this.axios.get(URl_, { headers: { Authorization: 'Token ' + this.$cookies.get('token').toString() } })
         .then(res => {
           this.id = res.data.id
           this.number = res.data.number
@@ -142,6 +147,9 @@ export default {
     }
   },
   created () {
+    if (this.$cookies.get('token') === 'error') {
+      this.$router.push('/auth')
+    }
     this.getSubdivisionItems()
     var URl_ = 'http://localhost:8000/classroom/update/' + this.$route.params.id + '/'
     this.getUpdateItems(URl_)
