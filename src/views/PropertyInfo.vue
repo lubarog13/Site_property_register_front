@@ -3,13 +3,14 @@
 <h1>Inventory number {{ unitOfProperty.inventory_number }}</h1>
 <v-btn
         color="warning"
-        :style="{'margin':'20px'}"
+        :style="{'margin-bottom':'20px'}"
         @click="$router.push('/property_create/')
             $router.go()">
             Create
         </v-btn>
   <v-card
   elevation="10"
+  :style = "{'background' : 'linear-gradient(90deg, rgb(229, 192, 90) 3%, rgb(247, 254, 254) 3%)'}"
   v-scroll.self="onScroll"
   class = "mx-auto overflow-y-auto overflow-x-hidden"
   max-width="70%"
@@ -23,7 +24,9 @@
       <div class="lefted">
           <p>Lifetime: {{ unitOfProperty.lifetime }}</p>
           <p>Revaluation year: {{ unitOfProperty.revaluation_year }}</p>
-          <h2>Cost: {{ unitOfProperty.cost }}rub.</h2>
+          <h2
+          :style="{'color': 'blue'}"
+          >Cost: {{ unitOfProperty.cost }}rub.</h2>
       </div>
       <v-dialog
       v-model="dialog"
@@ -147,6 +150,9 @@ export default {
 <style>
 .lefted {
   text-align: left;
+}
+h2 {
+  color: blue;
 }
 h1 {
   color: white;

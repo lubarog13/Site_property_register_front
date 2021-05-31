@@ -37,6 +37,16 @@
     >
       Search
     </v-btn>
+    <div class="my-2">
+            <v-btn
+              color="#1C2833"
+              fab
+              dark
+              @click="$router.push('profile')"
+            >
+              <v-icon>mdi-account-circle</v-icon>
+            </v-btn>
+          </div>
    </v-app-bar>
    <v-main class="d-flex align-center text-center" :style="{'background-image': 'url(' + require('./images/1.jpg') + ') ' , 'background-size' : '100%', 'background-color': '#00008B', 'background-attachment': 'fixed', 'overflow': 'hidden'}">
      <router-view />

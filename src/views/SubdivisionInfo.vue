@@ -6,6 +6,7 @@
   v-scroll.self="onScroll"
   class = "mx-auto overflow-y-auto overflow-x-hidden"
   max-width="70%"
+  :style = "{'background' : 'linear-gradient(90deg, rgb(205, 95, 75) 3%, rgb(247, 254, 254) 3%)'}"
   max-height="450px"
   >
   <v-row>

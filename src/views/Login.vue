@@ -63,6 +63,8 @@ export default {
           this.$cookies.set('token', response.data.auth_token)
           console.log(this.$cookies.get('token'))
           this.message = 'Ok'
+          this.$router.push('/subdivisions')
+          this.$router.go()
         })
         .catch(error => {
           console.log(error)

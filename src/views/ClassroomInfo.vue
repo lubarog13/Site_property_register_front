@@ -6,6 +6,7 @@
   v-scroll.self="onScroll"
   class = "mx-auto overflow-y-auto overflow-x-hidden"
   max-width="70%"
+  :style = "{'background' : 'linear-gradient(90deg, rgb(165, 207, 154) 3%, rgb(247, 254, 254) 3%)'}"
   max-height="450px"
   >
   <v-row>
@@ -76,10 +77,16 @@
       v-for="unitOfProperty in unitOfPropertys"
       :key="unitOfProperty.id">
       <li
-      ><p
+      > <v-card-text> <div
       @click="$router.push('/property/' + unitOfProperty.unit_of_property.id)
-  $router.go()"
-      >Inventory number: {{ unitOfProperty.unit_of_property.inventory_number }} cost: {{ unitOfProperty.unit_of_property.cost }}rub.</p>
+  $router.go()">
+  Inventory number: {{ unitOfProperty.unit_of_property.inventory_number }} cost: {{ unitOfProperty.unit_of_property.cost }}rub.</div>
+      <a
+        :style="{'margin':'10px', 'color': 'primary'}"
+        @click="$router.push('/property_list_update/'+unitOfProperty.id)
+            $router.go()">
+            Update
+        </a>
       <v-dialog
       v-model="dialog"
       persistent
@@ -87,22 +94,13 @@
     >
       <template
       v-slot:activator="{ on, attrs }">
-        <v-btn
-          color="error"
-          dark
-          :style="{'margin':'10px 0px'}"
+        <a
+          :style="{'margin':'10px 0px', 'color': 'red'}"
           v-bind="attrs"
           v-on="on"
         >
           Delete
-        </v-btn>
-        <v-btn
-        color="primary"
-        :style="{'margin':'10px'}"
-        @click="$router.push('/property_list_update/'+unitOfProperty.id)
-            $router.go()">
-            Update
-        </v-btn>
+        </a>
       </template>
       <v-card>
         <v-card-title class="headline">
@@ -130,7 +128,7 @@
           </v-btn>
         </v-card-actions>
       </v-card>
-    </v-dialog></li>
+    </v-dialog></v-card-text></li>
       </ul>
       </div>
       </v-col>

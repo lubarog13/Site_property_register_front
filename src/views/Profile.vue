@@ -1,6 +1,6 @@
 <template>
     <section>
-    <h1>Sign Up</h1>
+    <h1>Profile</h1>
         <v-card
   elevation="10"
   class = "mx-auto"
@@ -43,28 +43,20 @@
       label="Username"
       required
     ></v-text-field>
-    <v-text-field
-      v-model="password"
-      :counter="4"
-      type="password"
-      label="Password"
-      required
-    ></v-text-field>
     <v-btn
       :disabled="!valid"
       color="success"
       class="mr-4"
-      @click="pushUser('http://localhost:8000/auth/users/')"
+      @click="pushUser('http://localhost:8000/auth/users/me/')"
     >
-      Submit
+      Update
     </v-btn>
-
     <v-btn
       color="error"
       class="mr-4"
       @click="reset"
     >
-      Reset
+      Log out
     </v-btn>
   </v-form>
   <v-card-text text-color="error">
@@ -75,14 +67,13 @@
 </template>
 <script>
 export default {
-  name: 'Signup',
+  name: 'Profile',
   data: () => ({
     first_name: '',
     last_name: '',
     second_name: '',
     email: '',
     username: '',
-    password: '',
     message: '',
     emailRules: [
       v => !!v || 'E-mail is required',
@@ -95,18 +86,22 @@ export default {
   }),
   methods: {
     async pushUser (url) {
-      await this.axios.post(url, {
+      await this.axios.patch(url, {
         first_name: this.first_name,
         last_name: this.last_name,
         second_name: this.second_name,
         email: this.email,
-        username: this.username,
-        password: this.password
+        username: this.username
+      },
+      {
+        headers: {
+          Authorization: 'Token ' + this.$cookies.get('token').toString()
+        }
       })
         .then(response => {
           console.log(response)
           this.message = 'Ok'
-          this.$router.push('/auth')
+          this.$router.go()
         })
         .catch(error => {
           this.message = 'Password is simple'
@@ -114,9 +109,42 @@ export default {
           this.$cookies.set('token', 'error')
         })
     },
-    reset () {
-      this.$refs.form.reset()
+    async reset () {
+      await this.axios.post('http://localhost:8000/auth/token/logout/', {}, {
+        headers: {
+          Authorization: 'Token ' + this.$cookies.get('token').toString()
+        }
+      })
+        .then(res => {
+          console.log(res)
+          this.$cookies.set('token', 'error')
+          this.$router.push('/')
+          this.$router.go()
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+    async getUpdateItems (URl_) {
+      await this.axios.get(URl_, { headers: { Authorization: 'Token ' + this.$cookies.get('token').toString() } })
+        .then(res => {
+          this.username = res.data.username
+          this.first_name = res.data.first_name
+          this.last_name = res.data.last_name
+          this.second_name = res.data.second_name
+          this.email = res.data.email
+        })
+        .catch(err => {
+          console.log('error displaying subdivisionItem', err)
+        })
     }
+  },
+  created () {
+    if (this.$cookies.get('token') === 'error') {
+      this.$router.push('/auth')
+    }
+    var URl_ = 'http://localhost:8000/auth/users/me/'
+    this.getUpdateItems(URl_)
   }
 }
 </script>

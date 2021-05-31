@@ -6,6 +6,7 @@
   v-scroll.self="onScroll"
   class = "mx-auto overflow-y-auto overflow-x-hidden"
   max-width="70%"
+  :style = "{'background' : 'linear-gradient(90deg, rgb(119, 139, 196) 3%, rgb(247, 254, 254) 3%)'}"
   max-height="450px"
   >
   <v-row>
@@ -61,8 +62,10 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+    <v-row
+    justify="center">
+    <v-card-title> {{ employee.position }}</v-card-title></v-row>
         <v-card-text>email: {{ employee.email }}</v-card-text>
-      <p> {{ employee.position }}</p>
       <p>In ITMO command since {{ employee.start_year }}</p>
       <p>Home address {{ employee.home_address }}</p>
       <div class="lefted">

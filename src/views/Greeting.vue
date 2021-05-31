@@ -3,7 +3,7 @@
 <h1>Добро пожаловать</h1>
 <v-row
         no-gutters
-justify="center"
+        justify="center"
         style="height: 150px;"
 >
 <v-btn
