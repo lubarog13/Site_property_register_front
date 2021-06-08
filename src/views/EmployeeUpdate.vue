@@ -180,8 +180,10 @@ export default {
           Authorization: 'Token ' + this.$cookies.get('token').toString()
         }
       })
-        .then(function (response) {
+        .then(response => {
           console.log(response)
+          this.$router.push('/employee/' + this.id)
+          this.$router.go()
         })
         .catch(function (error) {
           console.log(error)

@@ -42,8 +42,7 @@
       color="success"
       class="mr-4"
       @click="pushList('http://localhost:8000/property_list/update/' + $route.params.id + '/')
-      $router.push('/classroom/' + classrooms)
-      $router.go()"
+      "
     >
       Submit
     </v-btn>
@@ -84,8 +83,10 @@ export default {
           Authorization: 'Token ' + this.$cookies.get('token').toString()
         }
       })
-        .then(function (response) {
+        .then(response => {
           console.log(response)
+          this.$router.push('/classroom/' + this.classrooms)
+          this.$router.go()
         })
         .catch(function (error) {
           console.log(error)

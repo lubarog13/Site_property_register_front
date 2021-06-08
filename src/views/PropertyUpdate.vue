@@ -95,13 +95,14 @@ export default {
           Authorization: 'Token ' + this.$cookies.get('token').toString()
         }
       })
-        .then(function (response) {
+        .then(response => {
           console.log(response)
+          this.$router.push('/property/' + this.id)
+          this.$router.go()
         })
         .catch(function (error) {
           console.log(error)
         })
-      this.$router.push('/property/' + this.$route.params.id)
     },
     reset (id) {
       this.$refs.form.reset()

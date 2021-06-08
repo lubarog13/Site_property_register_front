@@ -46,9 +46,7 @@
       :disabled="!valid"
       color="success"
       class="mr-4"
-      @click="pushSubdivision('http://localhost:8000/subdivisions/update/'+$route.params.id+'/')
-      $router.push('/subdivisions/')
-      $router.go()"
+      @click="pushSubdivision('http://localhost:8000/subdivisions/update/'+$route.params.id+'/')"
     >
       Submit
     </v-btn>
@@ -103,8 +101,10 @@ export default {
           Authorization: 'Token ' + this.$cookies.get('token').toString()
         }
       })
-        .then(function (response) {
+        .then(response => {
           console.log(response)
+          this.$router.push('/subdivision/' + this.id)
+          this.$router.go()
         })
         .catch(function (error) {
           console.log(error)

@@ -46,9 +46,7 @@
       :disabled="!valid"
       color="success"
       class="mr-4"
-      @click="pushProperty('http://localhost:8000/property_liab/update/' + $route.params.id + '/')
-      $router.push('/classroom/' + classrooms)
-      $router.go()"
+      @click="pushProperty('http://localhost:8000/property_liab/update/' + $route.params.id + '/')"
     >
       Submit
     </v-btn>
@@ -91,8 +89,10 @@ export default {
           Authorization: 'Token ' + this.$cookies.get('token').toString()
         }
       })
-        .then(function (response) {
+        .then(response => {
           console.log(response)
+          this.$router.push('/classroom/' + this.classrooms)
+          this.$router.go()
         })
         .catch(function (error) {
           console.log(this.start_date)

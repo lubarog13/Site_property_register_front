@@ -5,7 +5,6 @@ import Greeting from '../views/Greeting.vue'
 import Profile from '../views/Profile.vue'
 import Subdivision from '../views/Subdivision.vue'
 import Login from '../views/Login.vue'
-import Nasa from '../views/Nasa.vue'
 import Classroom from '../views/Classroom.vue'
 import Employee from '../views/Employee.vue'
 import SubdivisionInfo from '../views/SubdivisionInfo.vue'
@@ -14,7 +13,6 @@ import EmployeeInfo from '../views/EmployeeInfo.vue'
 import PropertyInfo from '../views/PropertyInfo.vue'
 import SubdivisionCreate from '../views/SubdivisionCreate.vue'
 import SubdivisionUpdate from '../views/SubdivisionUpdate.vue'
-import SubdivisionDelete from '../views/SubdivisionDelete.vue'
 import ClassroomCreate from '../views/ClassroomCreate.vue'
 import EmployeeCreate from '../views/EmployeeCreate.vue'
 import EmployeeUpdate from '../views/EmployeeUpdate.vue'
@@ -46,14 +44,6 @@ const routes = [
     component: Signup
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  },
-  {
     path: '/profile',
     name: 'Profile',
     component: Profile
@@ -62,12 +52,6 @@ const routes = [
     path: '/subdivisions',
     name: 'Subdivision',
     component: Subdivision
-  },
-
-  {
-    path: '/nasa',
-    name: 'Nasa',
-    component: Nasa
   },
 
   {
@@ -114,12 +98,6 @@ const routes = [
     path: '/subdivision_update/:id',
     name: 'SubdivisionUpdate',
     component: SubdivisionUpdate,
-    props: true
-  },
-  {
-    path: '/delete/:id',
-    name: 'SubdivisionDelete',
-    component: SubdivisionDelete,
     props: true
   },
   {

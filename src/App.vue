@@ -42,7 +42,7 @@
               color="#1C2833"
               fab
               dark
-              @click="$router.push('profile')"
+              @click="$router.push('/profile')"
             >
               <v-icon>mdi-account-circle</v-icon>
             </v-btn>

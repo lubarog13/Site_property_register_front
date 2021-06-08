@@ -17,7 +17,6 @@
     ></v-text-field>
     <v-text-field
       v-model="password"
-      :counter="4"
       type="password"
       label="Password"
       required
@@ -67,6 +66,7 @@ export default {
           this.$router.go()
         })
         .catch(error => {
+          this.message = 'Error login in system'
           console.log(error)
           this.$cookies.set('token', 'error')
         })

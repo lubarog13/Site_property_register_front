@@ -60,6 +60,11 @@
       Reset Form
     </v-btn>
   </v-form>
+  <v-row>
+    <v-card-text
+    :style="{'color': 'red'}"
+    >{{ message }}</v-card-text>
+  </v-row>
 </v-card>
 </section>
 </template>
@@ -71,6 +76,7 @@ export default {
     date_of_registration: null,
     revaluation_year: null,
     cost: null,
+    message: '',
     lifetime: null,
     valid: true,
     numberRules: [
@@ -95,11 +101,13 @@ export default {
           Authorization: 'Token ' + this.$cookies.get('token').toString()
         }
       })
-        .then(function (response) {
+        .then(response => {
           console.log(response)
+          this.message = 'Created success'
         })
-        .catch(function (error) {
+        .catch(error => {
           console.log(error)
+          this.message = 'Creation error'
         })
     },
     reset () {
