@@ -135,6 +135,7 @@ export default {
           this.id_subdivisions = res.data.id_subdivision
         })
         .catch(err => {
+          this.$router.push('/auth')
           console.log('error displaying subdivisionItem', err)
         })
     }

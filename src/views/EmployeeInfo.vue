@@ -125,6 +125,7 @@ export default {
           this.unitOfPropertys = res.data.Property_list
         })
         .catch(err => {
+          this.$router.push('/auth')
           console.log('error displaying subdivisionItems', err)
         })
     },

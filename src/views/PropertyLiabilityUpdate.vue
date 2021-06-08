@@ -109,6 +109,7 @@ export default {
           this.employeeItems = res.data.Employees
         })
         .catch(err => {
+          this.$router.push('/auth')
           console.log('error displaying employeeItems', err)
         })
       await this.axios.get(URl2, { headers: { Authorization: 'Token ' + this.$cookies.get('token').toString() } })

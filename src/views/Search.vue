@@ -69,6 +69,7 @@ export default {
           this.classItems = res.data.Classroom
         })
         .catch(err => {
+          this.$router.push('/auth')
           console.log('error displaying propertyItems', err)
         })
     }

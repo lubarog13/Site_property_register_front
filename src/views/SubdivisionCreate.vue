@@ -126,6 +126,7 @@ export default {
           console.log(this.subdivisions)
         })
         .catch(err => {
+          this.$router.push('/auth')
           console.log('error displaying subdivisionItems', err)
         })
     }

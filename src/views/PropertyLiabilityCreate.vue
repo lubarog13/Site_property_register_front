@@ -123,6 +123,7 @@ export default {
           this.classItems = res.data
         })
         .catch(err => {
+          this.$router.push('/auth')
           console.log('error displaying employeeItems', err)
         })
     }

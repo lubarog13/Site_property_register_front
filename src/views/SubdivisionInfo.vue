@@ -149,6 +149,7 @@ export default {
           console.log(this.classItems)
         })
         .catch(err => {
+          this.$router.push('/auth')
           console.log('error displaying subdivisionItems', err)
         })
     },

@@ -198,6 +198,7 @@ export default {
           this.employeeItems = res.data.Employees
         })
         .catch(err => {
+          this.$router.push('/auth')
           console.log('error displaying subdivisionItems', err)
         })
     },

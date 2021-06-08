@@ -120,6 +120,7 @@ export default {
           this.unit_of_property = res.data.unit_of_property.id
         })
         .catch(err => {
+          this.$router.push('/auth')
           console.log('error displaying units', err)
         })
     }

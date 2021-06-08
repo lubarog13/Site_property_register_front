@@ -135,6 +135,7 @@ export default {
           this.email = res.data.email
         })
         .catch(err => {
+          this.$router.push('/auth')
           console.log('error displaying subdivisionItem', err)
         })
     }

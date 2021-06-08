@@ -119,6 +119,7 @@ export default {
           this.revaluation_year = res.data.revaluation_year
         })
         .catch(err => {
+          this.$router.push('/auth')
           console.log('error displaying employeeItems', err)
         })
     }
