@@ -1,6 +1,6 @@
 <template>
 <section>
-  <h1>Create propery list</h1>
+  <h1>Update propery list</h1>
 <v-card
   elevation="10"
   class = "mx-auto"
@@ -104,7 +104,7 @@ export default {
         .catch(err => {
           console.log('error displaying units', err)
         })
-      await this.axios.get(URl2)
+      await this.axios.get(URl2, { headers: { Authorization: 'Token ' + this.$cookies.get('token').toString() } })
         .then(res => {
           this.classItems = res.data
         })

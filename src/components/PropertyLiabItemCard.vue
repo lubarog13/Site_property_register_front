@@ -86,6 +86,9 @@ export default {
   props: {
     propertyLiabItem: Object
   },
+  data: () => ({
+    dialog: false
+  }),
   methods: {
     async deleteProperty (URl) {
       await this.axios.delete(URl

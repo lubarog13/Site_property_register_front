@@ -1,6 +1,6 @@
 <template>
 <section>
-  <h1>Create propery liability</h1>
+  <h1>Create property liability</h1>
 <v-card
   elevation="10"
   class = "mx-auto"

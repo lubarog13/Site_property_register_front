@@ -1,6 +1,6 @@
 <template>
 <section>
-  <h1>Update propery liability</h1>
+  <h1>Update property liability</h1>
 <v-card
   elevation="10"
   class = "mx-auto"

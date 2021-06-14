@@ -1,6 +1,6 @@
 <template>
 <section>
-  <h1>Create classroom</h1>
+  <h1>Update classroom</h1>
 <v-card
   elevation="10"
   class = "mx-auto"
